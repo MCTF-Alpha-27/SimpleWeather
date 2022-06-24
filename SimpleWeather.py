@@ -2,8 +2,10 @@ import requests
 import json
 import re
 
+__all__ = ["get_weather"]
+
 __author__ = "Jerry"
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 def get_weather(name, *, write_json=False, json_path="./weather_info.json"):
     """
@@ -56,6 +58,11 @@ def get_weather(name, *, write_json=False, json_path="./weather_info.json"):
         "today": today_info,
         "yesterday": yesterday_info
     }
+
+    if json_path != "./weather_info.json" and not write_json:
+        raise UserWarning(
+            "如果没有设置 write_json=True，更改 json_path 的值是无意义的"
+        )
 
     if write_json:
         with open(json_path, "w") as f:
