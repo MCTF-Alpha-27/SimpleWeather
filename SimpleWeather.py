@@ -3,13 +3,15 @@ import json
 import re
 
 __author__ = "Jerry"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
-def getWeather(name, *, write_json=False):
+def get_weather(name, *, write_json=False, json_path="./weather_info.json"):
     """
     获取一个城市的天气数据，返回一个字典
 
-    设置 write_json=True 可以将数据写入 weather_info.json
+    设置 write_json=True 可以将数据写入json文件
+
+    设置 json_path 可以更改json文件的名称和保存位置，默认为同级目录下的 weather_info.json
     """
     url = "http://wthrcdn.etouch.cn/weather_mini"
     response = requests.get(url, {"city": name})
@@ -56,11 +58,10 @@ def getWeather(name, *, write_json=False):
     }
 
     if write_json:
-        with open("weather_info.json", "w") as f:
-            json.dump(weather_info, f, sort_keys = True, indent = 4, separators = (',',': '), ensure_ascii=False)
+        with open(json_path, "w") as f:
+            json.dump(weather_info, f, sort_keys=True, indent=4, separators=(',',': '), ensure_ascii=False)
     
     return weather_info
 
-
 if __name__ == "__main__":
-    print(getWeather("上海", write_json=True))
+    print(get_weather("上海", write_json=True))
