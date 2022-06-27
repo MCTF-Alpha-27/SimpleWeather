@@ -15,7 +15,7 @@ setup(
     long_description = long_description,
     url = "https://github.com/MCTF-Alpha-27/SimpleWeather",
     long_description_content_type = "text/markdown",
-    requires= [
+    install_requires= [
         "requests"
     ],
     classifiers = [

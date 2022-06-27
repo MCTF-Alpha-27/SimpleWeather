@@ -5,7 +5,7 @@ import re
 __all__ = ["get_weather"]
 
 __author__ = "Jerry"
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 
 def get_weather(name, *, write_json=False, json_path="./weather_info.json"):
     """
